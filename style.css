@@ -1,7 +1,15 @@
-#pokemon-image
+
+#info
 {
-    width: 30%;
+    font-size: x-large;
+    font-weight: bolder;
 }
+
+#pokemons
+{
+    font-size: 15px;
+}
+
 div
 {
     /*float: left;*/

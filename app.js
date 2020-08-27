@@ -6,7 +6,7 @@ const pokemon =
     abilities: document.getElementById('pokemon-abilities'),
 }
 
-const GetPokemon  = async () =>
+/*const GetPokemon  = async () =>
 {
     const url = 'https://pokeapi.co/api/v2/pokemon/porygon';
 
@@ -59,6 +59,28 @@ const GetAbilityInfo= async (url, abilityName)=>{
             ${effectsList}
         </ul>
     </li>`;
-}
+}*/
+const GetPokemonlist= async() =>
+{
+    
+    const url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
 
-GetPokemon();
+    fetch(url).then(response =>
+    {
+        return response.json();
+    }).then(data =>
+        {
+            const html = data.results.map(poke => {
+                    return `
+                    <div id=pokemons>
+               
+                    <p>Name: ${poke.name}</p>
+                    </div>
+                    `   
+                }).join('')
+                console.log(html)
+            console.log(data)
+            document.querySelector("#pokemon-name").insertAdjacentHTML("beforebegin", html)
+        })
+}
+GetPokemonlist();
