@@ -12,7 +12,7 @@ const GetPokemon = async url=>{
 
     const data = await fetch(url);
     const dataJson = await data.json();
-
+    //console.log(dataJson)
     const {sprites, name, types, abilities} = dataJson;
 
     /*types.forEach(element => {
@@ -40,24 +40,26 @@ const GetPokemon = async url=>{
 
 const GetPokemonList = async ()=>{
     const url = `${baseUrl}/pokemon`;
-    fetch(url).then(data => data.json()).then(json =>{
+    fetch(url).then(data => data.json()).then(json =>
+        {
         //console.log(json.results);
         const urlList = json.results.map(element => element.url);
         //console.log(urlList);
         const spriteList = urlList.map(pokemonUrl => GetPokemon(pokemonUrl));
-        spriteList.forEach(async sprite => {
+        spriteList.forEach(async sprite => 
+            {
             await sprite;
             const currentPokemonImg = document.createElement('img');
             currentPokemonImg.src = await sprite;
             currentPokemonImg.className = 'pokemonImage';
             pokemonImages.appendChild(currentPokemonImg);
 
-            currentPokemonImg.onclick = ()=> {
+            currentPokemonImg.onclick = ()=> 
+            {
                 sessionStorage.setItem('urlList', JSON.stringify(urlList));
                 sessionStorage.setItem('sprite', currentPokemonImg.src);
                 window.location.href = 'file:///G:/Users/maxal/Documents/hipermedia/app02-ulsa-2020/pokemon.htm';
             }
-         
         });
     });
 }
