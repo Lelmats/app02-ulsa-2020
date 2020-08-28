@@ -4,9 +4,8 @@
     font-weight: bolder;
 }
 
-#pokemons
-{
-    font-size: 15px;
+.pokemonImage{
+    border: solid;
 }
 
 div
