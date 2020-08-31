@@ -1,19 +1,20 @@
 const pokemon = {
-    sprite: document.getElementById('pokemon-image'),
+    sprite: document.getElementById('pokemon-images'),
     name: document.getElementById('pokemon-name'),
     types: document.getElementById('pokemon-types'),
-    abilities: document.getElementById('pokemon-abilities')
+    abilities: document.getElementById('pokemon-abilities'),
+    id: document.getElementById('pokemon-id')
 }
 
-const baseUrl = 'https://pokeapi.co/api/v2';
+const baseUrl = 'https://pokeapi.co/api/v2/pokemon?limit=15';
 const pokemonImages = document.getElementById('pokemon-images');
 
 const GetPokemon = async url=>{
 
     const data = await fetch(url);
     const dataJson = await data.json();
+    const {sprites, name, types, abilities,id} = dataJson;
     //console.log(dataJson)
-    const {sprites, name, types, abilities} = dataJson;
 
     /*types.forEach(element => {
         const {type} = element;
@@ -34,17 +35,20 @@ const GetPokemon = async url=>{
 
     //pokemon.sprite.src = await sprites.front_default;
     //pokemon.name.innerHTML = await `Name: ${name}`;
-
+   
+    
     return await sprites.front_default;
 }
 
-const GetPokemonList = async ()=>{
+const GetPokemonList = async (dataJson, data)=>{
     const url = `${baseUrl}/pokemon`;
+  
+
     fetch(url).then(data => data.json()).then(json =>
         {
         //console.log(json.results);
-        const urlList = json.results.map(element => element.url);
         //console.log(urlList);
+        const urlList = json.results.map(element => element.url);
         const spriteList = urlList.map(pokemonUrl => GetPokemon(pokemonUrl));
         spriteList.forEach(async sprite => 
             {
@@ -53,6 +57,7 @@ const GetPokemonList = async ()=>{
             currentPokemonImg.src = await sprite;
             currentPokemonImg.className = 'pokemonImage';
             pokemonImages.appendChild(currentPokemonImg);
+            
 
             currentPokemonImg.onclick = ()=> 
             {
@@ -103,6 +108,6 @@ const GetAbilityInfo= async (url, abilityName)=>{
     //console.log(abilitiesPokemon);
 }
 
-GetPokemon('https://pokeapi.co/api/v2/pokemon/porygon');
+//GetPokemon('https://pokeapi.co/api/v2/pokemon/porygon');
 
 GetPokemonList();

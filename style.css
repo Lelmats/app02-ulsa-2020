@@ -3,13 +3,43 @@
     font-size: x-large;
     font-weight: bolder;
 }
-
-.pokemonImage{
-    border: solid;
-    margin: 2px;
+body
+{
+    background-color: grey;
+}
+#pokemon-name
+{
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Russo One', sans-serif;
+    text-transform: capitalize;
+    color: white;
+}
+#pokemon-types
+{
+    text-transform: capitalize;
+    text-align: center;
+}
+#pokemon-abilities
+{
+    text-transform: capitalize;
+    text-align: center;
 }
 
-div
+.nigs
+ {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+  }
+  #center
 {
-    /*float: left;*/
+    text-transform: capitalize;
+    text-align: center;
+}
+#center2
+{
+    text-transform: capitalize;
+    text-align: center;
 }
